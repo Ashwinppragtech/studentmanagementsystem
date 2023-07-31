@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="student_sports_report" model="ir.actions.report">
+            <field name="name">Sports Report</field>
+            <field name="model">student.sports</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">student1.report_student_sports_template</field>
+            <field name="report_file">student1.report_student_sports_template</field>
+            <field name="print_report_name">'sports report-%s' %(object.name)</field>
+            <field name="binding_model_id" ref="model_student_sports"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <template id="report_student_sports_template">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <div class="page">
+                        <!-- Header -->
+                        <div class="header" style="text-align: center;">
+                            <h1>Sports Activity Report</h1>
+                            <span>Date: <t t-esc="doc.date_activity"/></span>
+                        </div>
+                        
+                        
+                        <!-- Content -->
+                        <div class="content">
+                            <h2><t t-esc="doc.name"/></h2>
+                            <p><t t-esc="doc.description"/></p>
+                            <p>Duration: <t t-esc="doc.duration"/> hours</p>
+                            
+                            <!-- Teachers -->
+                            <div>
+                                <h3>In Charge:</h3>
+                                <ul>
+                                    <t t-foreach="doc.teacher_ids" t-as="teacher">
+                                        <li><t t-esc="teacher.first_name"/></li>
+                                    </t>
+                                </ul>
+                            </div>
+                            
+                            <!-- Students -->
+                            <div>
+                                <h3>Participants:</h3>
+                                <ul>
+                                    <t t-foreach="doc.student_ids" t-as="student">
+                                        <li><t t-esc="student.first_name"/></li>
+                                    </t>
+                                </ul>
+                            </div>
+                            
+                            <!-- Prize Winners -->
+                            <div>
+                                <h3>Prize Winners:</h3>
+                                <p>First Prize: <t t-esc="doc.first_price.first_name"/></p>
+                                <p>Second Prize: <t t-esc="doc.second_price.first_name"/></p>
+                                <p>Third Prize: <t t-esc="doc.third_price.first_name"/></p>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

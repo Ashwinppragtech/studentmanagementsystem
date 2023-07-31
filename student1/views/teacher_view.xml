@@ -1,0 +1,72 @@
+<odoo>
+    <data>
+        <record id="view_teacher_search" model="ir.ui.view">
+            <field name="name">student.teacher.search</field>
+            <field name="model">student.teacher</field>
+            <field name="arch" type="xml">
+                <search string="TEACHER">
+                    <field name="first_name"/>
+                    <field name="last_name"/>
+                    <field name="dob"/>
+                    <field name="specialization"/>
+                    <field name="contact_num"/>
+                    <field name="e_mail"/>
+                </search>
+            </field>
+        </record>
+        <record id="view_teacher_form" model="ir.ui.view">
+            <field name="name">student.teacher.form</field>
+            <field name="model">student.teacher</field>
+            <field name="arch" type="xml">
+                <form string="Teacher">
+                    <sheet>
+                        <div>
+                            <h1>
+                                <field name="t_seq"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="first_name"/>
+                            <field name="last_name"/>
+                            <field name="dob"/>
+                            <field name="specialization"/>
+                            <field name="contact_num"/>
+                            <field name="e_mail"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_teacher_tree" model="ir.ui.view">
+            <field name="name">student.teacher.tree</field>
+            <field name="model">student.teacher</field>
+            <field name="arch" type="xml">
+                <tree string="Teacher">
+                    <field name="first_name"/>
+                    <field name="last_name"/>
+                    <field name="dob"/>
+                    <field name="specialization"/>
+                    <field name="contact_num"/>
+                    <field name="e_mail"/>
+                    <field name="age"/>
+                </tree>
+            </field>
+        </record>
+        <record id="action_teacher" model="ir.actions.act_window">
+            <field name="name">TEACHER</field>
+            <field name="res_model">student.teacher</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a teacher
+                </p>
+            </field>
+        </record>
+        <menuitem id="menu_teacher"
+                  name="Teacher"
+                  parent="student1.menu_root_student"
+                  action="student1.action_teacher"
+                  sequence="2"/>
+    </data>
+</odoo>

@@ -1,0 +1,47 @@
+<odoo>
+    <record id="action_products_report" model="ir.actions.report">
+        <field name="name">Products Report</field>
+        <field name="model">student.library</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">student1.report_products_card</field>
+        <field name="report_file">student1.report_products_card</field>
+        <field name="print_report_name">'Products Card - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="model_student_library"/>
+    </record>
+
+    <template id="report_products_card">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <h2>Products Data</h2>
+                <div class="page">
+                    <table style="border-collapse: collapse; width: 100%;">
+                        <tr>
+                            <th style="border: 1px solid black; padding: 8px; text-align: left; background-color: #f2f2f2;">Name</th>
+                            <th style="border: 1px solid black; padding: 8px; text-align: left; background-color: #f2f2f2;">date_order</th>
+                            <th style="border: 1px solid black; padding: 8px; text-align: left; background-color: #f2f2f2;">Customer</th>
+                            <th style="border: 1px solid black; padding: 8px; text-align: left; background-color: #f2f2f2;">Sales Person</th>
+                            <th style="border: 1px solid black; padding: 8px; text-align: left; background-color: #f2f2f2;">Next Activity</th>
+                            <th style="border: 1px solid black; padding: 8px; text-align: left; background-color: #f2f2f2;">Total</th>
+                            <th style="border: 1px solid black; padding: 8px; text-align: left; background-color: #f2f2f2;">Invoice Status</th>
+                        </tr>
+                        <t t-foreach="records" t-as="rec">
+                            <span t-set="order_data" t-value="request.env['sale.order'].browse(rec)"/>
+
+                            <tr>
+                                <td style="border: 1px solid black; padding: 8px; text-align: left;"><span t-field="order_data.name"/></td>
+                                <td style="border: 1px solid black; padding: 8px; text-align: left;"><span t-field="order_data.date_order"/></td>
+                                <td style="border: 1px solid black; padding: 8px; text-align: left;"><span t-field="order_data.partner_id"/></td>
+                                <td style="border: 1px solid black; padding: 8px; text-align: left;"><span t-field="order_data.user_id"/></td>
+                                <td style="border: 1px solid black; padding: 8px; text-align: left;"><span t-field="order_data.activity_ids"/></td>
+                                <td style="border: 1px solid black; padding: 8px; text-align: left;"><span t-field="order_data.amount_total"/></td>                       
+                                <td style="border: 1px solid black; padding: 8px; text-align: left;"><span t-field="order_data.invoice_status"/></td>
+
+                            </tr>
+                        </t>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

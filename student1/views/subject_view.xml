@@ -1,0 +1,59 @@
+<odoo>
+    <data>
+        <record id="view_subject_search" model="ir.ui.view">
+            <field name="name">student.subject.search</field>
+            <field name="model">student.subject</field>
+            <field name="arch" type="xml">
+                <search string="STUDENT_SUBJECT">
+                    <field name="subject"/>
+                    <field name="subject_name"/>
+                    <field name="class_id"/>
+                </search>
+            </field>
+        </record>
+        
+        <record id="view_subject_form" model="ir.ui.view">
+            <field name="name">student.subject.form</field>
+            <field name="model">student.subject</field>
+            <field name="arch" type="xml">
+                <form string="subject">
+                    <sheet>
+                        <group>
+                            <field name="subject"/>
+                            <field name="subject_name"/>
+                            <field name="class_id"/>
+                            <field name="teacher_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_subject_tree" model="ir.ui.view">
+            <field name="name">student.subject.tree</field>
+            <field name="model">student.subject</field>
+            <field name="arch" type="xml">
+                <tree string="SUBJECT">
+                    <field name="subject"/>
+                    <field name="subject_name"/>
+                    <field name="class_id"/>
+                    <field name="teacher_id"/>    
+                </tree>
+            </field>
+        </record>
+        
+        <record id="action_student_subject" model="ir.actions.act_window">
+            <field name="name">STUDENT SUBJECT</field>
+            <field name="res_model">student.subject</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a Subject
+                </p>
+            </field>
+        </record>
+
+        
+        <menuitem id="subject_order_menu" name="Subject" parent="menu_root_student" action="student1.action_student_subject" sequence="5"/>
+    </data>
+</odoo>

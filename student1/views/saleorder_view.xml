@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+    <record model="ir.ui.view" id="view_sale_order_form_inherit">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <header>
+                <button name="apply_discount" string="Apply Discound" type="object" class="btn-danger" 
+                context="{'disc_perc': 10}"/>
+
+            </header>
+        </field>
+    </record>
+    </data>
+</odoo>

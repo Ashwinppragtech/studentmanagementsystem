@@ -1,0 +1,78 @@
+<odoo>
+    <data>
+        <record id="view_sports_search" model="ir.ui.view">
+            <field name="name">student.sports.search</field>
+            <field name="model">student.sports</field>
+            <field name="arch" type="xml">
+                <search string="Sports">
+                    <field name="name"/>
+                    <field name="date_activity"/>
+                </search>
+            </field>
+        </record>
+        <record id="view_sports_form" model="ir.ui.view">
+            <field name="name">student.sports.form</field>
+            <field name="model">student.sports</field>
+            <field name="arch" type="xml">
+                <form string="Sports">
+                    <sheet>
+                        <header>
+                            <!-- <button name="approve" string="Approve" type="object" attrs="{'invisible': [('book_is_available','=',False)]}" class="btn-primary"/>
+                            <button name="returned" string="Returned" type="object" attrs="{'invisible': [('book_is_available','=',True)]}" class="btn-primary"/>
+                            <button name="%(wizard_action_class)d" string="Create Library" type="action" class="oe_highlight"/> -->
+                        </header>
+                        <group>
+                            <field name="name"/>
+                            <field name="description"/>
+                            <field name="date_activity"/>
+                            <field name="duration"/>
+                            <field name="teacher_ids"/>
+                            <field name="student_ids"/>
+                            <field name="first_price"/>
+                            <field name="second_price"/>
+                            <field name="third_price"/>
+                        </group>
+                        <button name="%(student_sports_report)d" string="Print Sports Report" type="action" class="btn-info"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_sports_tree" model="ir.ui.view">
+            <field name="name">student.sports.tree</field>
+            <field name="model">student.sports</field>
+            <field name="arch" type="xml">
+                <tree string="sports">
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="date_activity"/>
+                    <field name="duration"/>
+                    <field name="teacher_ids"/>
+                    <field name="student_ids"/>
+                    <field name="first_price"/>
+                    <field name="second_price"/>
+                    <field name="third_price"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_sports" model="ir.actions.act_window">
+            <field name="name">Sports</field>
+            <field name="res_model">student.sports</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create New Record
+                </p>
+            </field>
+        </record>
+
+        
+
+        <menuitem id="menu_sports"
+                  name="Sports"
+                  parent="student1.menu_root_student"
+                  action="student1.action_sports"
+                  sequence="9"/>
+    </data>
+</odoo>

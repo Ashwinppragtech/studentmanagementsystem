@@ -1,0 +1,54 @@
+<odoo>
+    <data>
+        
+        <record id="model_category_student" model="ir.module.category">
+            <field name="name">Student Management</field>
+            <field name="description">Groups for StudentManagement</field>
+        </record>
+
+        <record id="students_group" model="res.groups">
+            <field name="name">Student</field>
+            <field name="category_id" ref="model_category_student"></field>
+        </record>
+
+        <record id="teachers_group" model="res.groups">
+            <field name="name">Teacher</field>
+            <field name="category_id" ref="model_category_student"></field>
+        </record>
+
+        <record id="admin_group" model="res.groups">
+            <field name="name">Administrator</field>
+            <field name="category_id" ref="model_category_student" />
+            <field name="implied_ids" eval="[(4, ref('base.user_admin'))]" />
+        </record>
+
+        <record id="record_rule_student_admin" model="ir.rule">
+            <field name="name">Admin access profile</field>
+            <field name="model_id" ref="model_student_student"></field>
+            <field name="groups" eval="[(4,ref('admin_group'))]"></field>
+            <field name="domain_force">[(1,'=',1)]</field>
+        </record>
+
+        <record id="record_rule_student_teacher" model="ir.rule">
+            <field name="name">teacher access sprofile</field>
+            <field name="model_id" ref="model_student_student"></field>
+            <field name="groups" eval="[(4,ref('teachers_group'))]"></field>
+            <field name="domain_force">[(1,'=',1)]</field>
+        </record>
+
+        <record id="record_rule_student_student" model="ir.rule">
+            <field name="name">Student Access Profile</field>
+            <field name="model_id" ref="model_student_student"></field>
+            <field name="groups" eval="[(4, ref('students_group'))]"></field>
+            <field name="domain_force">[('create_uid','=',user.id)]</field>
+        </record>
+
+        <record id="record_rule_teacher_teacher" model="ir.rule">
+            <field name="name">Teacher Access Profile</field>
+            <field name="model_id" ref="model_student_teacher"></field>
+            <field name="groups" eval="[(4, ref('teachers_group'))]"></field>
+            <field name="domain_force">[('create_uid','=',user.id)]</field>
+        </record>
+    
+    </data>
+</odoo>

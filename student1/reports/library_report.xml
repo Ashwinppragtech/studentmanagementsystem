@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="student_library_report" model="ir.actions.report">
+            <field name="name">Student Library</field>
+            <field name="model">student.library</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">student1.report_library_wizard_template</field>
+            <field name="report_file">student1.report_library_wizard_template</field>
+            <field name="binding_model_id" ref="model_student_library"/>
+        </record>
+
+        <template id="report_library_wizard_template">
+            <t t-call="web.html_container">
+                <t t-call="web.internal_layout">
+                    <div class="page">
+                        <t t-foreach="docs" t-as="doc">
+                            <div>
+                                <h2>Book Allocation Report</h2>
+                                <p>Student ID:
+                                    <span t-field="doc.student_id"/>
+                                </p>
+                                <p>Name:
+                                    <span t-field="doc.student_name"/>
+                                </p>
+                                <p>Issue Date:
+                                    <span t-field="doc.issue_date"/>
+                                </p>
+                                <p>Return Date:
+                                    <span t-field="doc.return_date"/>
+                                </p>
+                                <p>Books:</p>
+                                <ul>
+                                    <t t-foreach="doc.book_ids" t-as="book">
+                                        <li><span t-field="book.book_name"/></li>
+                                    </t>
+                                </ul>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </template>
+        
+    </data>
+</odoo>

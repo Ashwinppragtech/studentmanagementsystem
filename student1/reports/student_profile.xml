@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <template id="student1.studentprofilereport">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <div class="page">
+                        <h2 style="text-align: center; margin-bottom: 20px;">Student Profile</h2>
+                        <table class="table table-condensed" style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr>
+                                    <th style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f5f5f5;">Sequence</th>
+                                    <th style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f5f5f5;">First Name</th>
+                                    <th style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f5f5f5;">Last Name</th>
+                                    <th style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f5f5f5;">Class</th>
+                                    <th style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f5f5f5;">Date of Birth</th>
+                                    <th style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f5f5f5;">Grade</th>
+                                    <th style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f5f5f5;">Contact Number</th>
+                                    <th style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f5f5f5;">E-mail</th>
+                                    <th style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f5f5f5;">Age</th>
+                                    <th style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f5f5f5;">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;"><span t-field="doc.seq"/></td>
+                                    <td style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;"><span t-field="doc.first_name"/></td>
+                                    <td style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;"><span t-field="doc.last_name"/></td>
+                                    <td style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;"><span t-field="doc.class_id"/></td>
+                                    <td style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;"><span t-field="doc.dob"/></td>
+                                    <td style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;"><span t-field="doc.grade"/></td>
+                                    <td style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;"><span t-field="doc.contact_num"/></td>
+                                    <td style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;"><span t-field="doc.e_mail"/></td>
+                                    <td style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;"><span t-field="doc.age"/></td>
+                                    <td style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;"><span t-field="doc.status"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </template>
+        
+        <record id="ir_module_print" model="ir.actions.report">
+            <field name="name">Students profile</field>
+            <field name="model">student.student</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">student1.studentprofilereport</field>
+            <field name="report_file">student1.studentprofilereport</field>
+            <field name="binding_model_id" ref="model_student_student"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

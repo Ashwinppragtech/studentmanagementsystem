@@ -1,0 +1,36 @@
+<odoo>
+    <data>
+        <!-- Define the email template -->
+        <record id="email_template_id" model="mail.template">
+            <field name="name">Email Template</field>
+            <field name="model_id" ref="model_student_student"/>
+            <field name="subject">Subject of the Email</field>
+            <field name="email_from">${object.env.user.id.email if object.env.user else ''}</field>
+            <field name="email_to">${object.e_mail}</field>
+            <field name="lang">${object.env.user.lang if object.env.user else ''}</field>
+            <field name="body_html">
+                <![CDATA[
+                <p>Dear ${object.first_name} ${object.last_name},</p>
+                <p>This is an email template example for the Student model.</p>
+                <p>Below are the details:</p>
+                <ul>
+                    <li>Sequence: ${object.seq}</li>
+                    <li>First Name: ${object.first_name}</li>
+                    <li>Last Name: ${object.last_name}</li>
+                    <li>Class: ${object.class_id.name}</li>
+                    <li>Date of Birth: ${object.dob}</li>
+                    <li>Grade: ${object.grade}</li>
+                    <li>Contact Number: ${object.contact_num}</li>
+                    <li>E-mail: ${object.e_mail}</li>
+                    <li>Schedule: ${object.schedule_s}</li>
+                    <li>Age: ${object.age}</li>
+                    <li>Status: ${object.status}</li>
+                </ul>
+                <p>Thank you.</p>
+                ]]>
+            </field>
+        </record>
+        
+        
+    </data>
+</odoo>

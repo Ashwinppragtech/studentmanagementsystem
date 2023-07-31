@@ -1,0 +1,65 @@
+<odoo>
+    <data>
+        <record id="view_book_search" model="ir.ui.view">
+            <field name="name">student.book.search</field>
+            <field name="model">student.book</field>
+            <field name="arch" type="xml">
+                <search string="Library">
+                    <field name="book_serial_number"/>
+                    <field name="book_name"/>
+                    <field name="auther"/>
+                </search>
+            </field>
+        </record>
+        <record id="view_book_form" model="ir.ui.view">
+            <field name="name">student.book.form</field>
+            <field name="model">student.book</field>
+            <field name="arch" type="xml">
+                <form string="Book">
+                    
+
+                    <sheet>
+                        <group>
+                            <field name="book_serial_number"/>
+                            <field name="book_name"/>
+                            <field name="auther"/>
+                            <field name="is_available"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_book_tree" model="ir.ui.view">
+            <field name="name">student.book.tree</field>
+            <field name="model">student.book</field>
+            <field name="arch" type="xml">
+                <tree string="Book">
+                    <field name="book_serial_number"/>
+                    <field name="book_name"/>
+                    <field name="auther"/>
+                    <field name="is_available"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_book" model="ir.actions.act_window">
+            <field name="name">BOOK</field>
+            <field name="res_model">student.book</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create New Record
+                </p>
+            </field>
+        </record>
+
+        
+
+        <menuitem id="menu_book"
+                  name="Book"
+                  parent="student1.menu_root_library"
+                  action="student1.action_book"
+                  sequence="8"/>
+    </data>
+</odoo>

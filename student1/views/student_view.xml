@@ -1,0 +1,135 @@
+<odoo>
+    <data>
+        <record id="server_action_confirm_status" model="ir.actions.server">
+            <field name="name">Mark As Confirmed</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_student_student"/>
+            <field name="binding_model_id" ref="model_student_student"/>
+            <field name="binding_view_types">list</field>
+            <field name="state">code</field>
+            <field name="code">
+                for record in records:
+                    if record.status=='drafted':
+                        record.confirm()
+            </field>
+        </record>
+        <record id="view_student_search" model="ir.ui.view">
+            <field name="name">student.student.search</field>
+            <field name="model">student.student</field>
+            <field name="arch" type="xml">
+                <search string="STUDENT">
+                    <field name="first_name"/>
+                    <field name="last_name"/>
+                    <field name="dob"/>
+                    <field name="grade"/>
+                    <field name="contact_num"/>
+                    <field name="e_mail"/>
+                    <field name="class_id"/>
+                    <field name="schedule_s"/>
+                    <field name="age"/>
+                    <!-- customized filter -->
+                    <filter name="grade_filter A" string="A grade" domain="[('grade','=','A')]"/>
+                    <filter name="grade_filter B" string="B grade" domain="[('grade','=','B')]"/>
+                    <filter name="my_students" string="My students" domain="[('create_uid','=',uid)]"/>
+                    <filter name="date_of_birth" string="Date of birth" date="dob" default_period="this_year"/>
+
+
+
+
+
+                </search>
+            </field>
+        </record>
+        <record id="view_student_form" model="ir.ui.view">
+            <field name="name">student.student.form</field>
+            <field name="model">student.student</field>
+            <field name="arch" type="xml">
+            <form string="STUDENT">
+            
+            <sheet>
+                <div class="oe_button_box" name="button_box">
+                            <button name="action_smartbutton_library" class="o_stat_button" type="object" icon="fa-star">
+                                <span class="o_stat_text">Go to Library</span>
+                            </button>
+                            <button name="action_smartbutton_class" class="o_stat_button" type="object" icon="fa-book">
+                                <span class="o_stat_text">Go to Class</span>
+                            </button>
+                </div>
+                <div class="oe_title">
+                    <h1>
+                        <field name="seq" readonly="1"/>
+                    </h1>
+                </div>
+                <header>
+                    <button name="confirm" string="Confirm" type="object" attrs="{'invisible': [('status','=','confirmed')]}" class="btn-primary"/>
+                    <button name="reject" string="Reject" type="object" attrs="{'invisible': [('status','=','rejected')]}" class="btn-primary"/>
+                    <button name="send_email_action" string="Send Email" type="object" class="oe_highlight"/>
+                </header>
+                <widget name="web_ribbon" title="rejected" bg_color="bg-warning" attrs="{'invisible': [('status', '=', 'confirmed')]}"/>
+                <widget name="web_ribbon" title="confirmed" bg_color="bg-success" attrs="{'invisible': [('status', '=', 'rejected')]}"/>
+                <group>
+                    <group>
+                        <field name="first_name"/>
+                        <field name="last_name"/>
+                        <field name="dob"/>
+                        <field name="grade"/>
+                        <field name="contact_num"/>
+                        <field name="e_mail"/>
+                    </group>
+                    <group>
+                        <field name="class_id"/>
+                        <field name="schedule_s"/>
+                        <field name="age"/>
+                        <field name="status"/>
+                    </group>
+                </group>
+                
+            </sheet>
+        </form>
+    </field>
+</record>
+
+
+        <record id="view_student_tree" model="ir.ui.view">
+            <field name="name">student.student.tree</field>
+            <field name="model">student.student</field>
+            <field name="arch" type="xml">
+                <tree string="STUDENT">
+                    <field name="seq"/>
+                    <field name="first_name"/>
+                    <field name="last_name"/>
+                    <field name="dob"/>
+                    <field name="grade"/>
+                    <field name="contact_num"/>
+                    <field name="e_mail"/>
+                    <field name="class_id"/>
+                    <field name="schedule_s"/>
+                    <field name="age"/>
+                    <field name="status" widget="statusbar"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_student" model="ir.actions.act_window">
+            <field name="name">STUDENT</field>
+            <field name="res_model">student.student</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a Student
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_root_student"
+                  name="Student"
+                  sequence="1"/>
+
+        <menuitem id="menu_student"
+                  name="Student"
+                  parent="student1.menu_root_student"
+                  action="student1.action_student"
+                  sequence="1"/>
+    </data>
+</odoo>

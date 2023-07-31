@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+
+        <record id="view_classwizard_form" model="ir.ui.view">
+            <field name="name">student.wizardlibrary.form</field>
+            <field name="model">student.wizardlibrary</field>
+            <field name="arch" type="xml">
+                <form string="classwizard">
+                        <group>
+                            <field name="student_id"/>
+                            <field name="student_name"/> 
+                            <field name="issue_date"/>
+                            <field name="return_date"/>
+                            <field name="days_left"/>
+                            <field name="book_ids"/>
+                        </group>
+                        <footer>
+                            <button name="save_to_another_model" string="save" type="object" class="btn-primary"/>
+                            <button name="print_report" string="Print" type="object" class="btn-primary"/>
+                            <button name="action_print_report" string="Print  Sale Report" type="object" class="btn-warning"/>
+                            <button string="cancel" class="btn-secondary" special="cancel"/>
+                        </footer>
+                </form>    
+            </field>
+        </record>
+        <record id="wizard_action_class" model="ir.actions.act_window">
+            <field name="name">class</field>
+            <field name="res_model">student.wizardlibrary</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_classwizard_form"/>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

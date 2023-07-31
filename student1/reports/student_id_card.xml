@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="student1.studentidcard">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <div class="page">
+                        <h2 style="text-align: center; margin-bottom: 20px;">Student ID Card</h2>
+                        <!-- <div style="text-align: center;">
+                            <img src="student_photo.jpg" alt="Student Photo" style="width: 150px; height: 150px; border-radius: 50%; margin-bottom: 10px;">
+                        </div> -->
+                        <table class="table table-condensed" style="width: 100%; border-collapse: collapse;">
+                            <tbody>
+                                <tr>
+                                    <td style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;"><strong>Student Name:</strong></td>
+                                    <td style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;"><span t-field="doc.first_name"/> <span t-field="doc.last_name"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;"><strong>Class:</strong></td>
+                                    <td style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;"><span t-field="doc.class_id"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;"><strong>Date of Birth:</strong></td>
+                                    <td style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;"><span t-field="doc.dob"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;"><strong>Grade:</strong></td>
+                                    <td style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;"><span t-field="doc.grade"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;"><strong>Contact Number:</strong></td>
+                                    <td style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;"><span t-field="doc.contact_num"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;"><strong>Email:</strong></td>
+                                    <td style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;"><span t-field="doc.e_mail"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;"><strong>Age:</strong></td>
+                                    <td style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;"><span t-field="doc.age"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 8px; text-align: left;"><strong>Status:</strong></td>
+                                    <td style="padding: 8px; text-align: left;"><span t-field="doc.status"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+        <record id="student_id_card_report" model="ir.actions.report">
+            <field name="name">Student ID Card</field>
+            <field name="model">student.student</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">student1.studentidcard</field>
+            <field name="report_file">student1.studentidcard</field>
+            <field name="print_report_name">'Student card-%s' %(object.first_name)</field>
+            <field name="binding_model_id" ref="model_student_student"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>
