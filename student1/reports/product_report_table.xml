@@ -1,7 +1,7 @@
 <odoo>
     <record id="action_products_report" model="ir.actions.report">
         <field name="name">Products Report</field>
-        <field name="model">student.library</field>
+        <field name="model">sale.order</field>
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">student1.report_products_card</field>
         <field name="report_file">student1.report_products_card</field>
