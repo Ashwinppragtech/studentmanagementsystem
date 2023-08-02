@@ -24,6 +24,12 @@ class SportsEvent(models.Model):
     event_date = fields.Date(string = "Date")
     sports_type = fields.Char(string = "Sports Type")
     sports_name_ids = fields.One2many("student.sports","sports_event_id", string = "Sports Item")
+    sports_item_count = fields.Integer(string = "No Of Sports Item", compute = "get_sports_item_count")
+
+    @api.depends("sports_name_ids")
+    def get_sports_item_count(self):
+        self.sports_item_count = len(self.sports_name_ids)
+
 
 
 
