@@ -1,0 +1,63 @@
+<odoo>
+    <data>
+        <record id="view_event_search" model="ir.ui.view">
+            <field name="name">student.sportsevent.search</field>
+            <field name="model">student.sportsevent</field>
+            <field name="arch" type="xml">
+                <search string="EVENT">
+                    <field name="event_name"/>
+                    <field name="event_date"/>
+                </search>
+            </field>
+        </record>
+        
+        <record id="view_event_form" model="ir.ui.view">
+            <field name="name">student.sportsevent.form</field>
+            <field name="model">student.sportsevent</field>
+            <field name="arch" type="xml">
+                <form string="Event">
+                    <sheet>
+                        <group>
+                            <field name="event_name"/>
+                            <field name="event_date"/>
+                            <field name="sports_type"/>
+                            <field name="sports_name_ids"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_event_tree" model="ir.ui.view">
+            <field name="name">student.sportsevent.tree</field>
+            <field name="model">student.sportsevent</field>
+            <field name="arch" type="xml">
+                <tree string="EVENT">
+                    <field name="event_name"/>
+                    <field name="event_date"/>
+                    <field name="sports_type"/>
+                    <field name="sports_name_ids"/>   
+                </tree>
+            </field>
+        </record>
+        
+        <record id="action_student_event" model="ir.actions.act_window">
+            <field name="name">SPORTS EVENT</field>
+            <field name="res_model">student.sportsevent</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a Sports Event Here...
+                </p>
+            </field>
+        </record>
+
+        
+        <menuitem id="event_order_menu" 
+            name="Sports Event" 
+            parent="menu_root_student" 
+            action="student1.action_student_event" 
+            sequence="10"/>
+    
+    </data>
+</odoo>

@@ -22,6 +22,7 @@
                             <button name="%(wizard_action_class)d" string="Create Library" type="action" class="oe_highlight"/> -->
                         </header>
                         <group>
+                            <field name="sports_event_id"/>
                             <field name="name"/>
                             <field name="description"/>
                             <field name="date_activity"/>
@@ -43,6 +44,7 @@
             <field name="model">student.sports</field>
             <field name="arch" type="xml">
                 <tree string="sports">
+                    <field name="sports_event_id"/>
                     <field name="name"/>
                     <field name="description"/>
                     <field name="date_activity"/>

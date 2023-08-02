@@ -22,3 +22,4 @@ access_book_admin,student.book,model_student_book,admin_group,1,1,1,1
 access_wizardlibrary_admin,student.wizardlibrary,model_student_wizardlibrary,admin_group,1,1,1,1
 access_sports_admin,student.sports,model_student_sports,admin_group,1,1,1,1
 
+access_sportsevent_admin,student.sportsevent,model_student_sportsevent,admin_group,1,1,1,1

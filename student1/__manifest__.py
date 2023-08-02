@@ -40,6 +40,7 @@
         'views/book_view.xml',
         'views/saleorder_view.xml',
         'views/sports_view.xml',
+        'views/sportsevent_view.xml',
         'reports/student_profile.xml',
         'reports/student_id_card.xml',
         'reports/library_report.xml',
