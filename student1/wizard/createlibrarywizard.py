@@ -7,13 +7,13 @@ class CreateWizard(models.TransientModel):
     _name="student.wizardlibrary"
     _description = "Create wizard library"
 
-    lib_id = fields.Many2one('student.library',string='Lib ID',default=lambda self: self.show_id())
-    student_id = fields.Many2one('student.student',related='lib_id.student_id',store=True)
-    student_name = fields.Char(string='Name',related='lib_id.student_name',store= True)
+    # lib_id = fields.Many2one('student.library',string='Lib ID',default=lambda self: self.show_id())
+    student_id = fields.Many2one('student.student' ,  string = "Student")
+    student_name = fields.Char(string='Name',related='student_id.first_name',store= True)
     issue_date = fields.Date(string="Issue Date",default=date.today(),readonly=True)
-    return_date = fields.Date(string='Return Date',related='lib_id.return_date')
+    return_date = fields.Date(string='Return Date', compute = "_compute_date_difference")
     book_ids = fields.Many2many('student.book')
-    days_left = fields.Integer(string="Days left",related='lib_id.days_left')
+    days_left = fields.Integer(string="Days left")
     
     # default=lambda self: self.show_id()
 
@@ -25,17 +25,27 @@ class CreateWizard(models.TransientModel):
             'student_name': self.student_name,
             'issue_date': self.issue_date,
             'return_date':self.return_date, 
+            'days_left': self.days_left,
             'book_ids':self.book_ids,
 
         })
+
+    @api.onchange('return_date')
+    def _compute_date_difference(self):
+        for record in self:
+            if record.issue_date and record.return_date and record.issue_date<record.return_date:
+                record.days_left = (record.return_date-record.issue_date).days
+            else:
+                record.days_left = 0
         
     
-    @api.model
-    def show_id(self):
-        active_id = self.env.context.get('active_id')
-        if active_id:
-            return active_id
-        return False
+    # @api.model
+    # def show_id(self):
+    #     active_id = self.env.context.get('active_id')
+    #     if active_id:
+    #         print("....................................................................")
+    #         self.student_id =  active_id
+        
         # active_id = self.env.context.get('active_id')
         # if active_id:
         #     return self.env['student.library'].browse(active_id)

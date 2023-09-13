@@ -16,11 +16,10 @@
             <field name="arch" type="xml">
                 <form string="Sports">
                     <sheet>
-                        <header>
-                            <!-- <button name="approve" string="Approve" type="object" attrs="{'invisible': [('book_is_available','=',False)]}" class="btn-primary"/>
+                        <!-- <header>
+                            <button name="approve" string="Approve" type="object" attrs="{'invisible': [('book_is_available','=',False)]}" class="btn-primary"/>
                             <button name="returned" string="Returned" type="object" attrs="{'invisible': [('book_is_available','=',True)]}" class="btn-primary"/>
-                            <button name="%(wizard_action_class)d" string="Create Library" type="action" class="oe_highlight"/> -->
-                        </header>
+                        </header> -->
                         <group>
                             <field name="sports_event_id"/>
                             <field name="name"/>
@@ -70,11 +69,15 @@
         </record>
 
         
-
-        <menuitem id="menu_sports"
+        <menuitem id="menu_root_sports"
                   name="Sports"
                   parent="student1.menu_root_student"
-                  action="student1.action_sports"
                   sequence="9"/>
+        
+        <menuitem id="menu_sports"
+                  name="Sports Item"
+                  parent="student1.menu_root_sports"
+                  action="student1.action_sports"
+                  sequence="10"/>
     </data>
 </odoo>

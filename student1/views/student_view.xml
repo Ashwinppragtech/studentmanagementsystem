@@ -83,6 +83,8 @@
                         <field name="status"/>
                     </group>
                 </group>
+                <button name="action_open_wizard" string="Create Library" type="object" class="oe_highlight"/>
+
                 
             </sheet>
         </form>

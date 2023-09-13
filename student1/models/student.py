@@ -116,12 +116,30 @@ class Student(models.Model):
         print("----------------Again printed---------------")
         st = self.search([])
         for rec in st:
-            template_id = rec.env.ref('student1.email_template_id')
+            template_id = rec.env.ref('stdefault_wizard_field1udent1.email_template_id')
             email_values = {
                 'email_to': rec.e_mail,
             }
             template_id.send_mail(rec.id, force_send=True, email_values=email_values)
             print("----------------Email genarated---------------")
+
+
+    def action_open_wizard(self):
+        # Prepare the context to pass data from the form view to the wizard
+        context = {
+            'default_student_id': self.id  # Pass values from your form view fields
+        }
+
+        # Open the wizard using an action
+        return {
+            'name': 'Wizard Title',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'student.wizardlibrary',
+            'target': 'new',
+            'type': 'ir.actions.act_window',
+            'context': context,
+        }
 
 
     # def write(self, vals):

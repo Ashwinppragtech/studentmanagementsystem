@@ -54,11 +54,12 @@
         </record>
 
         
-        <menuitem id="event_order_menu" 
+        <menuitem 
+            id="event_order_menu" 
             name="Sports Event" 
-            parent="menu_root_student" 
+            parent="student1.menu_root_sports" 
             action="student1.action_student_event" 
-            sequence="10"/>
+            sequence="11"/>
     
     </data>
 </odoo>
